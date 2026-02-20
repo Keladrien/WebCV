@@ -1,1 +1,17 @@
-<p>accomp works!</p>
+@for (accomp of apiData(); track accomp.id) {
+<div>
+    <h2>{{ accomp.acc_Name }}</h2>
+
+    <p>{{accomp.description}}</p>
+
+    <p>{{accomp.useTech}}</p>
+
+    <p>{{accomp.date}}</p>
+
+    <button>
+        <a [href]="accomp.repo" target="_blank">Repo</a>
+    </button>
+
+</div>
+
+}

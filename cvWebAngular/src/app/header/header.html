@@ -1,3 +1,14 @@
 <div>
-    <h1>Test header</h1>
+    <button matButton [matMenuTriggerFor]="menu">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="selectPage('Lucas Minville')" routerLink="/">Home</button>
+        <button mat-menu-item (click)="selectPage('Accomplissement')" routerLink="/accomplissement">Accomplissement
+        </button>
+    </mat-menu>
+    <span>
+        <h1>{{selectedPage}}</h1>
+    </span>
+
 </div>

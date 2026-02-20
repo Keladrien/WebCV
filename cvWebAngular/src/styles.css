@@ -1,1 +1,54 @@
-/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background-color: #303030;
+  color: #ffffff;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+app-home-page,
+app-accomp {
+  display: block;
+  width: 90%;
+  margin: auto;
+}
+
+.container {
+  padding: 2rem;
+}
+
+.card {
+  background-color: #424242;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  margin-bottom: 1.5rem;
+}
+
+button.mat-mdc-raised-button.mat-primary {
+  background-color: #ff4081 !important;
+}
+
+.mat-mdc-menu-item:hover {
+  background-color: rgba(255, 64, 129, 0.15) !important;
+}
+
+.mat-mdc-menu-panel {
+  background-color: #424242 !important;
+  border-radius: 12px !important;
+}
+
+.mat-toolbar {
+  background-color: #212121 !important;
+  color: white !important;
+}
+
+a {
+  color: #ff4081;
+  text-decoration: none;
+}
+
+a:hover {
+  opacity: 0.8;
+}
