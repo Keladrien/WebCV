@@ -1,17 +1,57 @@
-@for (accomp of apiData(); track accomp.id) {
 <div>
-    <h2>{{ accomp.acc_Name }}</h2>
+    <mat-accordion>
+        @for (accomp of apiData(); track $index; let even = $even) {
+        @if (even) {
+        <mat-expansion-panel>
 
-    <p>{{accomp.description}}</p>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <h2>{{ accomp.acc_Name }}</h2>
+                </mat-panel-title>
+                <mat-panel-description>
+                    <p>{{accomp.useTech}}</p>
+                </mat-panel-description>
 
-    <p>{{accomp.useTech}}</p>
+            </mat-expansion-panel-header>
 
-    <p>{{accomp.date}}</p>
+            <p>{{accomp.description}}</p>
+            <p>{{accomp.date}}</p>
+            <button>
+                <a [href]="accomp.repo" target="_blank">Repo</a>
+            </button>
 
-    <button>
-        <a [href]="accomp.repo" target="_blank">Repo</a>
-    </button>
+        </mat-expansion-panel>
+        }
 
+
+        }
+    </mat-accordion>
+
+    <mat-accordion>
+        @for (accomp of apiData(); track $index; let odd = $odd) {
+        @if (odd) {
+        <mat-expansion-panel>
+
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <h2>{{ accomp.acc_Name }}</h2>
+                </mat-panel-title>
+                <mat-panel-description>
+                    <p>{{accomp.useTech}}</p>
+                </mat-panel-description>
+
+            </mat-expansion-panel-header>
+
+            <p>{{accomp.description}}</p>
+            <p>{{accomp.date}}</p>
+            <button>
+                <a [href]="accomp.repo" target="_blank">Repo</a>
+            </button>
+
+        </mat-expansion-panel>
+        }
+
+
+        }
+    </mat-accordion>
 </div>
-
-}
