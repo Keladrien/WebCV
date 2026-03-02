@@ -1,0 +1,127 @@
+<mat-tab-group>
+    <mat-tab label="Ajouter">
+        <mat-card>
+            <mat-card-header>
+                Ajouter un projets
+            </mat-card-header>
+            <mat-card-content>
+                <form (ngSubmit)="handleSubmit()">
+                    <div class="inputFlex">
+                        <label for="type" hidden>Type</label>
+                        <select name="type" id="type" placeholder="Type" [(ngModel)]="newAccomp.type">
+                            <option value="" disabled class="greyTxt">Type</option>
+                            <option value="Projet personnel">Projet personnel</option>
+                            <option value="Expérience de travail">Expérience de travail</option>
+                            <option value="Éducation">Éducation</option>
+                        </select>
+                    </div>
+
+                    <div class="inputFlex">
+                        <label for="acc_Name" hidden>Nom</label>
+                        <input type="text" name="acc_Name" id="acc_Name" placeholder="Nom"
+                            [(ngModel)]="newAccomp.acc_Name">
+                    </div>
+
+                    <div class="inputFlex">
+                        <label for="date" hidden>Date</label>
+                        <input type="text" name="date" id="date" placeholder="Date" [(ngModel)]="newAccomp.date">
+                    </div>
+
+                    @if (newAccomp.type === "Expérience de travail" || newAccomp.type === "Éducation") {
+                    <div class="inputFlex">
+                        <label for="useTech" hidden>Use Tech</label>
+                        <input type="text" name="useTech" id="useTech" placeholder="N/A" disabled>
+                    </div>
+                    }@else {
+                    <div class="inputFlex">
+                        <label for="useTech" hidden>Use Tech</label>
+                        <input type="text" name="useTech" id="useTech" placeholder="Technologies"
+                            [(ngModel)]="newAccomp.useTech">
+                    </div>
+                    }
+
+
+                    <div class="inputFlexText">
+                        <label for="description" hidden>Description</label>
+                        <textarea name="description" id="description" placeholder="Description"
+                            [(ngModel)]="newAccomp.description"></textarea>
+                    </div>
+
+                    @if (newAccomp.type === "Expérience de travail" || newAccomp.type === "Éducation") {
+                    <div class="inputFlex link">
+                        <label for="repo" hidden>Repo GitHub</label>
+                        <input type="text" name="repo" id="repo" class="link" placeholder="N/A" disabled>
+                    </div>
+                    <div class="inputFlex link">
+                        <label for="img" hidden>Repo GitHub</label>
+                        <input type="text" name="img" id="img" class="link" placeholder="N/A" disabled>
+                    </div>
+                    }@else {
+                    <div class="inputFlex link">
+                        <label for="repo" hidden>Repo GitHub</label>
+                        <input type="text" name="repo" id="repo" class="link" placeholder="Repo GitHub"
+                            [(ngModel)]="newAccomp.repo">
+                    </div>
+                    <div class="inputFlex link">
+                        <label for="img" hidden>Repo GitHub</label>
+                        <input type="text" name="img" id="img" class="link" placeholder="Image Link"
+                            [(ngModel)]="newAccomp.imgLink">
+                    </div>
+                    }
+
+
+                    <button type="submit">Soummettre</button>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </mat-tab>
+    <mat-tab label="Supprimer">
+        <h2>Projet personnel</h2>
+        <div class="delSection">
+
+            <table>
+                @for (accomp of apiData(); track accomp.type;) {
+                @if (accomp.type == "Projet personnel") {
+                <tr>
+                    <td>{{accomp.acc_Name}}</td>
+                    <td><button (click)="handleDelete(accomp.id)" class="delButton">Delete</button></td>
+                </tr>
+                }
+                }
+            </table>
+        </div>
+
+        <h2>Expérience de travail</h2>
+        <div class="delSection">
+
+            <table>
+                @for (accomp of apiData(); track accomp.type;) {
+                @if (accomp.type == "Expérience de travail") {
+                <tr>
+                    <td>{{accomp.acc_Name}}</td>
+                    <td><button (click)="handleDelete(accomp.id)" class="delButton">Delete</button></td>
+                </tr>
+                }
+                }
+            </table>
+        </div>
+
+
+        <h2>Éducation</h2>
+        <div class="delSection">
+
+            <table>
+                @for (accomp of apiData(); track accomp.type;) {
+                @if (accomp.type == "Éducation") {
+                <tr>
+                    <td>{{accomp.acc_Name}}</td>
+                    <td><button (click)="handleDelete(accomp.id)" class="delButton">Delete</button></td>
+                </tr>
+                }
+                }
+            </table>
+        </div>
+
+
+    </mat-tab>
+</mat-tab-group>

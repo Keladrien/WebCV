@@ -1,0 +1,77 @@
+.cdk-overlay-pane {
+  background-color: #1e1e1e;
+  color: white;
+}
+.mat-mdc-menu-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+span {
+  display: flex;
+  justify-content: center;
+}
+
+div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+div button {
+  position: absolute;
+  left: 1rem;
+}
+
+div button mat-icon {
+  font-size: 3rem;
+  height: 3rem;
+  width: 2rem;
+}
+
+svg {
+  width: 2rem;
+  fill: white;
+  position: absolute;
+  right: 1rem;
+  top: 2.5rem;
+}
+
+@keyframes rotateForward {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(90deg);
+  }
+}
+
+@keyframes rotateReverse {
+  from {
+    transform: rotate(90deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.rotation {
+  animation: rotateForward 0.3s ease-in-out forwards;
+}
+
+.rotation-reverse {
+  animation: rotateReverse 0.3s ease-in-out forwards;
+}
+
+.menuButton {
+  background-color: #141414;
+  transition: transform 0.2s ease-in-out;
+}
+
+.menuButton:hover {
+  transform: translateY(5px);
+}
+
+.white {
+  color: white;
+}

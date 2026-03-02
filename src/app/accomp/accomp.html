@@ -1,0 +1,245 @@
+<mat-tab-group [dynamicHeight]='true'>
+    @if(isMobile){
+    <mat-tab label="Projet personnel">
+        <div>
+            <mat-accordion>
+                @for (project of projects(); track project.type; ) {
+                @if (project.type === "Projet personnel") {
+
+                <mat-expansion-panel>
+
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <h2>{{ project.acc_Name }}</h2>
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <p>{{project.useTech}}</p>
+                        </mat-panel-description>
+
+                    </mat-expansion-panel-header>
+
+                    <p>{{project.description}}</p>
+                    <p>{{project.date}}</p>
+                    @if (project.imgLink === "n/a"){
+
+                    }@else {
+                    <img [src]="project.imgLink" alt="Website home page screenshot">
+                    }
+
+                    <button>
+                        <a [href]="project.repo" target="_blank">Repo GitHub</a>
+                    </button>
+                </mat-expansion-panel>
+                } }
+            </mat-accordion>
+        </div>
+    </mat-tab>
+    }@else {
+    <mat-tab label="Projet personnel">
+        <div>
+            <mat-accordion>
+                @for (project of projects(); track project.type; let even = $even) {
+                @if (project.type === "Projet personnel") {
+                @if (even) {
+                <mat-expansion-panel #$index (mouseenter)="$index.open()">
+
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <h2>{{ project.acc_Name }}</h2>
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <p>{{project.useTech}}</p>
+                        </mat-panel-description>
+
+                    </mat-expansion-panel-header>
+
+                    <p>{{project.description}}</p>
+                    <p>{{project.date}}</p>
+                    @if (project.imgLink === "n/a"){
+
+                    }@else {
+                    <img [src]="project.imgLink" alt="Website home page screenshot">
+                    }
+
+
+                    <button>
+                        <a [href]="project.repo" target="_blank">Repo GitHub</a>
+                    </button>
+                </mat-expansion-panel>
+                } } }
+            </mat-accordion>
+
+            <mat-accordion>
+                @for (project of projects(); track $index; let odd = $odd) {
+                @if (project.type === "Projet personnel") {
+                @if (odd) {
+                <mat-expansion-panel #$index (mouseenter)="$index.open()">
+
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <h2>{{ project.acc_Name }}</h2>
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <p>{{project.useTech}}</p>
+                        </mat-panel-description>
+
+                    </mat-expansion-panel-header>
+
+                    <p>{{project.description}}</p>
+                    <p>{{project.date}}</p>
+                    <img [src]="project.imgLink" alt="Website home page screenshot">
+                    <button>
+                        <a [href]="project.repo" target="_blank">Repo GitHub</a>
+                    </button>
+
+                </mat-expansion-panel>
+                }
+                }
+
+
+
+                }
+            </mat-accordion>
+        </div>
+    </mat-tab>
+    }
+
+
+    @if(isMobile){
+    <mat-tab label="Expérience de travail">
+
+        <div>
+            <mat-accordion>
+                @for (job of jobs(); track $index;) {
+                @if (job.type === "Expérience de travail") {
+
+                <mat-expansion-panel>
+
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <h2>{{ job.acc_Name }}</h2>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <p>{{job.description}}</p>
+                    <p>{{job.date}}</p>
+                </mat-expansion-panel>
+                } }
+            </mat-accordion>
+        </div>
+    </mat-tab>
+    }@else {
+    <mat-tab label="Expérience de travail">
+
+        <div>
+            <mat-accordion>
+                @for (job of jobs(); track $index; let even = $even) {
+                @if (job.type === "Expérience de travail") {
+                @if (even) {
+                <mat-expansion-panel #$index (mouseenter)="$index.open()">
+
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <h2>{{ job.acc_Name }}</h2>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <p>{{job.description}}</p>
+                    <p>{{job.date}}</p>
+                </mat-expansion-panel>
+                } } }
+            </mat-accordion>
+
+            <mat-accordion>
+                @for (job of jobs(); track $index; let odd = $odd) {
+                @if (job.type === "Expérience de travail") {
+                @if (odd) {
+                <mat-expansion-panel #$index (mouseenter)="$index.open()">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <h2>{{ job.acc_Name }}</h2>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <p>{{job.description}}</p>
+                    <p>{{job.date}}</p>
+                </mat-expansion-panel>
+                }
+                }
+
+
+
+                }
+            </mat-accordion>
+        </div>
+    </mat-tab>
+    }
+
+    @if (isMobile) {
+    <mat-tab label="Éducation">
+        <div>
+            <mat-accordion>
+                @for (education of educations(); track $index;) {
+                @if (education.type === "Éducation") {
+
+                <mat-expansion-panel>
+
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <h2>{{ education.acc_Name }}</h2>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <p>{{education.description}}</p>
+                    <p>{{education.date}}</p>
+                </mat-expansion-panel>
+                } }
+            </mat-accordion>
+        </div>
+    </mat-tab>
+    }@else {
+    <mat-tab label="Éducation">
+        <div>
+            <mat-accordion>
+                @for (education of educations(); track $index; let even = $even) {
+                @if (education.type === "Éducation") {
+                @if (even) {
+                <mat-expansion-panel #$index (mouseenter)="$index.open()">
+
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <h2>{{ education.acc_Name }}</h2>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <p>{{education.description}}</p>
+                    <p>{{education.date}}</p>
+                </mat-expansion-panel>
+                } } }
+            </mat-accordion>
+
+            <mat-accordion>
+                @for (education of educations(); track $index; let odd = $odd) {
+                @if (education.type === "Éducation") {
+                @if (odd) {
+                <mat-expansion-panel #$index (mouseenter)="$index.open()">
+
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <h2>{{ education.acc_Name }}</h2>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <p>{{education.description}}</p>
+                    <p>{{education.date}}</p>
+                </mat-expansion-panel>
+                }
+                }
+
+
+
+                }
+            </mat-accordion>
+        </div>
+    </mat-tab>
+    }
+
+</mat-tab-group>

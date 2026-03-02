@@ -1,0 +1,88 @@
+div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  width: 90%;
+  margin: 2rem auto;
+}
+
+mat-accordion {
+  flex: 1 1 400px;
+  max-width: 500px;
+}
+
+mat-expansion-panel {
+  margin-bottom: 1.5rem;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+  background-color: #2c2c2c;
+  color: #ffffff;
+}
+
+mat-expansion-panel:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+}
+
+mat-expansion-panel-header {
+  height: 80px;
+  background-color: #252525;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+mat-panel-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+mat-panel-title h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.panel-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+mat-panel-description p {
+  margin: 0;
+  color: #4973ff;
+  font-size: 0.9rem;
+}
+
+.panel-content {
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+mat-expansion-panel.mat-expanded .panel-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+mat-tab-group {
+  min-height: 100vh;
+}
+
+button {
+  padding: 8px;
+}
+
+img {
+  width: 100%;
+}

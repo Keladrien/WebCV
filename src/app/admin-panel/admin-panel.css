@@ -1,0 +1,65 @@
+/*=====================
+ADD SECCTION
+=======================*/
+
+mat-card {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+}
+mat-card-header {
+  margin: auto;
+}
+
+input,
+select {
+  max-height: 40px;
+  height: 30px;
+  width: 100%;
+}
+textarea {
+  height: 100px;
+}
+
+.link {
+  width: 100%;
+}
+
+.inputFlex {
+  display: flex;
+  justify-content: space-between;
+  width: 45%;
+  margin: 15px auto;
+}
+form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+mat-card-content,
+button {
+  margin-top: 1rem;
+  width: 90%;
+  margin: auto;
+}
+
+.inputFlexText {
+  width: 100%;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+}
+
+/*=====================
+DELETE SECCTION
+=======================*/
+
+.delSection {
+  display: flex;
+  flex-wrap: wrap;
+}
+.delButton {
+  width: 60px;
+  background-color: red;
+  border-radius: 20px;
+}
