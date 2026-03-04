@@ -60,7 +60,7 @@
                     <div class="inputFlex link">
                         <label for="repo" hidden>Repo GitHub</label>
                         <input type="text" name="repo" id="repo" class="link" placeholder="Repo GitHub"
-                            [(ngModel)]="newAccomp.repo">
+                            [(ngModel)]="newAccomp.repoGitHub">
                     </div>
                     <div class="inputFlex link">
                         <label for="img" hidden>Repo GitHub</label>
@@ -76,52 +76,163 @@
         </mat-card>
     </mat-tab>
     <mat-tab label="Supprimer">
-        <h2>Projet personnel</h2>
-        <div class="delSection">
 
+
+        <div class="delSection">
+            <h2>Projet personnel</h2>
             <table>
                 @for (accomp of apiData(); track accomp.type;) {
                 @if (accomp.type == "Projet personnel") {
-                <tr>
-                    <td>{{accomp.acc_Name}}</td>
-                    <td><button (click)="handleDelete(accomp.id)" class="delButton">Delete</button></td>
-                </tr>
+                <div class="tablerow">
+                    <tr>
+                        <td>
+                            <div>
+                                <p>{{accomp.acc_Name}}</p>
+                                <p>{{accomp.useTech}}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <button (click)="handleDelete(accomp.id)" class="delButton">Delete</button>
+                        </td>
+                    </tr>
+                </div>
+
                 }
                 }
             </table>
         </div>
 
-        <h2>Expérience de travail</h2>
-        <div class="delSection">
 
+        <div class="delSection">
+            <h2>Expérience de travail</h2>
             <table>
                 @for (accomp of apiData(); track accomp.type;) {
                 @if (accomp.type == "Expérience de travail") {
-                <tr>
-                    <td>{{accomp.acc_Name}}</td>
-                    <td><button (click)="handleDelete(accomp.id)" class="delButton">Delete</button></td>
-                </tr>
+                <div class="tablerow">
+                    <tr>
+                        <div>
+                            <td>{{accomp.acc_Name}}</td>
+                        </div>
+
+                        <td>
+                            <button (click)="handleDelete(accomp.id)" class="delButton">Delete</button>
+                        </td>
+                    </tr>
+                </div>
+
                 }
                 }
             </table>
         </div>
 
 
-        <h2>Éducation</h2>
-        <div class="delSection">
 
+        <div class="delSection">
+            <h2>Éducation</h2>
             <table>
                 @for (accomp of apiData(); track accomp.type;) {
                 @if (accomp.type == "Éducation") {
-                <tr>
-                    <td>{{accomp.acc_Name}}</td>
-                    <td><button (click)="handleDelete(accomp.id)" class="delButton">Delete</button></td>
-                </tr>
+                <div class="tablerow">
+                    <tr>
+                        <div>
+                            <td>{{accomp.acc_Name}}</td>
+                        </div>
+
+                        <td>
+                            <button (click)="handleDelete(accomp.id)" class="delButton">Delete</button>
+                        </td>
+                    </tr>
+                </div>
+
                 }
                 }
             </table>
         </div>
 
 
+    </mat-tab>
+    <mat-tab label="Modifier">
+        <mat-card>
+            <mat-card-header>
+                Modifier un projets
+            </mat-card-header>
+            <mat-card-content>
+                <form (ngSubmit)="handleUpdate()">
+                    <label for="projets" hidden>Projects</label>
+                    <select name="projets" id="projets" [(ngModel)]="projectToModify.id"
+                        (change)="loadSelectedAccomp()">
+                        <option value="" disabled selected>Selectionner un projet</option>
+                        @for (accomp of apiData(); track accomp.type;){
+                        <option [value]="accomp.id">{{accomp.acc_Name}}</option>
+                        }
+                    </select>
+
+                    <div class="inputFlex">
+                        <label for="type" hidden>Type</label>
+                        <select name="type" id="type" placeholder="Type">
+                            <option value="" disabled class="greyTxt">Type</option>
+                            <option value="Projet personnel">Projet personnel</option>
+                            <option value="Expérience de travail">Expérience de travail</option>
+                            <option value="Éducation">Éducation</option>
+                        </select>
+                    </div>
+
+                    <div class="inputFlex">
+                        <label for="acc_Name" hidden>Nom</label>
+                        <input type="text" name="acc_Name" [(ngModel)]="projectToModify.acc_Name" placeholder="Nom">
+                    </div>
+
+                    <div class="inputFlex">
+                        <label for="date" hidden>Date</label>
+                        <input type="text" name="date" [(ngModel)]="projectToModify.date" placeholder="Date">
+                    </div>
+
+                    @if (projectToModify.type === "Expérience de travail" || projectToModify.type === "Éducation") {
+                    <div class="inputFlex">
+                        <label for="useTech" hidden>Use Tech</label>
+                        <input type="text" name="useTech" id="useTech" placeholder="N/A" disabled>
+                    </div>
+                    }@else {
+                    <div class="inputFlex">
+                        <label for="useTech" hidden>Use Tech</label>
+                        <input type="text" name="useTech" [(ngModel)]="projectToModify.useTech"
+                            placeholder="Technologies">
+                    </div>
+                    }
+
+
+                    <div class="inputFlexText">
+                        <label for="description" hidden>Description</label>
+                        <textarea name="description" [(ngModel)]="projectToModify.description"
+                            placeholder="Description"></textarea>
+                    </div>
+
+                    @if (projectToModify.type === "Expérience de travail" || projectToModify.type === "Éducation") {
+                    <div class="inputFlex link">
+                        <label for="repo" hidden>Repo GitHub</label>
+                        <input type="text" name="repo" id="repo" class="link" placeholder="N/A" disabled>
+                    </div>
+                    <div class="inputFlex link">
+                        <label for="img" hidden>Repo GitHub</label>
+                        <input type="text" name="img" id="img" class="link" placeholder="N/A" disabled>
+                    </div>
+                    }@else {
+                    <div class="inputFlex link">
+                        <label for="repo" hidden>Repo GitHub</label>
+                        <input type="text" name="repo" [(ngModel)]="projectToModify.repoGitHub"
+                            placeholder="Repo GitHub">
+                    </div>
+                    <div class="inputFlex link">
+                        <label for="img" hidden>Repo GitHub</label>
+                        <input type="text" name="imgLink" [(ngModel)]="projectToModify.imgLink"
+                            placeholder="Image Link">
+                    </div>
+                    }
+
+
+                    <button type="submit">Soummettre</button>
+                </form>
+            </mat-card-content>
+        </mat-card>
     </mat-tab>
 </mat-tab-group>

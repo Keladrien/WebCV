@@ -18,28 +18,84 @@ export class AdminPanel {
 
   apiData = signal<AccompClass[]>([]) ;
 
+  selectedData = signal<AccompClass[]>([])
+
   newAccomp: AccompClass = {
   type: "",
   acc_Name: "",
   date: "",
   useTech: "",
   description: "",
-  repo: "",
+  repoGitHub: "",
   imgLink: "",
   }
+
+loadSelectedAccomp() {
+  if (!this.projectToModify.id) return;
+
+  this.api.getById(this.projectToModify.id).subscribe({
+    next: (accomp: AccompClass) => {
+      this.projectToModify = accomp;
+    },
+    error: (error: any) => {
+      console.error("Erreur récupération :", error.message);
+    }
+  });
+}
+
+handleUpdate() {
+  if (!this.projectToModify.id) {
+    alert("Aucun projet sélectionné");
+    return;
+  }
+
+  this.api.updateAccomp(this.projectToModify.id, this.projectToModify)
+    .subscribe({
+      next: () => {
+        alert("Modification réussie !");
+        this.loadAccomp();
+          this.projectToModify = {
+              id: 0,
+              type: "",
+              acc_Name: "",
+              date: "",
+              useTech: "",
+              description: "",
+              repoGitHub: "",
+              imgLink: "",
+            };
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
+}
+
+  projectToModify: AccompClass = {
+  id: 0,
+  type: "",
+  acc_Name: "",
+  date: "",
+  useTech: "",
+  description: "",
+  repoGitHub: "",
+  imgLink: "",
+  }
+
+
 
 
   handleSubmit() {
 if (this.newAccomp.type === "Éducation" || this.newAccomp.type === "Expérience de travail" ) {
   this.newAccomp.useTech = "n/a";
-  this.newAccomp.repo = "n/a";
+  this.newAccomp.repoGitHub = "n/a";
   this.newAccomp.imgLink = "n/a"
 }
 
 if (this.newAccomp.acc_Name === "" 
   || this.newAccomp.date === "" 
   || this.newAccomp.description === "" 
-  || this.newAccomp.repo === "" 
+  || this.newAccomp.repoGitHub === "" 
   || this.newAccomp.type === "" 
   || this.newAccomp.useTech === "") {
 return alert("Formulaire non remplis")
@@ -54,7 +110,7 @@ return alert("Formulaire non remplis")
               date: "",
               useTech: "",
               description: "",
-              repo: "",
+              repoGitHub: "",
               imgLink: "",
             };
       },

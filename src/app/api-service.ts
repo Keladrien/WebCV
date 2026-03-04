@@ -11,7 +11,7 @@ export class ApiService {
 
   private http = inject(HttpClient)
 
-  private apiurl = "https://apiwebcv.onrender.com/"
+  private apiurl = "http://localhost:8080/"
 
  
 public login(user: userClass){
@@ -21,6 +21,11 @@ public login(user: userClass){
   );
 }
 
+public getById(id: number) {
+  return this.http.get<AccompClass>(
+    `${this.apiurl}accomplissement/${id}`
+  );
+}
 
   public getHello(): Observable<string> {
     return this.http.get(
@@ -51,6 +56,13 @@ public login(user: userClass){
 public delAccomp(id:number | undefined) {
   return this.http.delete(
     `${this.apiurl}delAccomp/${id}`
+  )
+}
+
+public updateAccomp(id:number | undefined, accomp: AccompClass) {
+  return this.http.put(
+    `${this.apiurl}modify/${id}`,
+    accomp
   )
 }
 
