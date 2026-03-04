@@ -37,41 +37,6 @@ svg {
   top: 2.5rem;
 }
 
-@keyframes rotateForward {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(90deg);
-  }
-}
-
-@keyframes rotateReverse {
-  from {
-    transform: rotate(90deg);
-  }
-  to {
-    transform: rotate(0deg);
-  }
-}
-
-.rotation {
-  animation: rotateForward 0.3s ease-in-out forwards;
-}
-
-.rotation-reverse {
-  animation: rotateReverse 0.3s ease-in-out forwards;
-}
-
-.menuButton {
-  background-color: #141414;
-  transition: transform 0.2s ease-in-out;
-}
-
-.menuButton:hover {
-  transform: translateY(5px);
-}
-
 .white {
   color: white;
 }

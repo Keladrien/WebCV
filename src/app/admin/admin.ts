@@ -2,6 +2,8 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { Router } from '@angular/router';
+import { userClass } from '../user-class';
+import { ApiService } from '../api-service';
 
 @Component({
   selector: 'app-admin',
@@ -13,35 +15,47 @@ export class Admin {
 
   private router = inject(Router);
 
+  private api = inject(ApiService);
 
-  private hardUser = {
-    user: 'admin',
-    password: '1234'
-  };
+  newLogin : userClass = {
+    username : "",
+    password: ""
+  }
+
 
   loginForm = new FormGroup({
     user: new FormControl(""),
     password: new FormControl("")
   });
 
+ 
+
+
   handleSubmit() {
+  const username = this.loginForm.get('user')?.value;
+  const password = this.loginForm.get('password')?.value;
 
-    const username = this.loginForm.value.user;
-    const password = this.loginForm.value.password;
+  if (username && password) {
+    this.api.login({
+      username: username,
+      password: password
+    }).subscribe({
+      next: (res: boolean) => {
 
-    if (
-      username === this.hardUser.user &&
-      password === this.hardUser.password
-    ) {
+        if (res) {
+          console.log("Login réussi");
+          sessionStorage.setItem('connected', "connected")
 
+        this.router.navigate(['/panel']);
 
-      sessionStorage.setItem('user', JSON.stringify(this.hardUser));
-
-
-      this.router.navigate(['/panel']);
-
-    } else {
-      alert("Mauvais identifiant");
-    }
+        } else {
+          console.log("Mauvais identifiants");
+        }
+      },
+      error: (err) => {
+        console.error("Erreur :", err);
+      }
+    });
   }
+}
 }
